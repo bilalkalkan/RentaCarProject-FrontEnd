@@ -17,6 +17,7 @@ import { AddColorComponent } from './components/Admin/add-color/add-color.compon
 import { UpdatecolorComponent } from './components/Admin/updatecolor/updatecolor.component';
 import { CustomerComponent } from './components/Admin/customer/customer.component';
 import { LoginComponent } from './components/login/login.component';
+import { LoginGuard } from './guards/login.guard';
 const routes: Routes = [
   {path:'',component:HomeComponent},
   {path:'Home',component:HomeComponent},
@@ -28,7 +29,7 @@ const routes: Routes = [
   {path:'cars',component:CarComponent},
   {path:'cars/brand/:brandId',component:CarComponent},
   {path:'cars/color/:colorId',component:CarComponent},
-  {path:'cars/add-car',component:AddCarComponent},
+  {path:'addcar',component:AddCarComponent,canActivate:[LoginGuard]},
   {path:'brand-image',component:BrandImageComponent},
   {path:'deletecar',component:DeletecarComponent},
   {path:'updatecar',component:UpdatecarComponent},

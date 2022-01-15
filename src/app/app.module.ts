@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -34,6 +34,7 @@ import { ColorlistComponent } from './components/Admin/colorlist/colorlist.compo
 import { AddColorComponent } from './components/Admin/add-color/add-color.component';
 import { UpdatecolorComponent } from './components/Admin/updatecolor/updatecolor.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -62,7 +63,6 @@ import { LoginComponent } from './components/login/login.component';
     AddColorComponent,
     UpdatecolorComponent,
     LoginComponent,
-    
   ],
   imports: [
     BrowserModule,
@@ -75,9 +75,14 @@ import { LoginComponent } from './components/login/login.component';
       positionClass: 'toast-bottom-right',
     }),
     BrowserAnimationsModule,
-   
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
