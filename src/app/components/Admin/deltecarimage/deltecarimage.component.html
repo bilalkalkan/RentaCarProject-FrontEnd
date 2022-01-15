@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Araba Id</th>
+      <th>Image Path</th>
+
+      <th scope="col">operasyonlar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let carImages of carImages">
+      <th>{{ carImages.id }}</th>
+      <td>{{ carImages.carId }}</td>
+      <td>{{ carImages.imagePath }}</td>
+
+      <td>
+        <button
+          (click)="deleteCarImages(carImages)"
+          class="btn btn-danger"
+          type="button"
+        >
+          Sil
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-success"
+          routerLink="/deleteCar/updatecar"
+        >
+          Güncelle
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

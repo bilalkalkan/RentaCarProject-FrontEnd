@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="column">
+    <div class="col-md-3">
+      <app-brand></app-brand>
+      <div>
+        Tüm Arabalar
+        <button class="btn btn-primary" routerLink="/cars">göster</button>
+      </div>
+      <div class="col-md-3">
+        <select
+          class="form-select"
+          [(ngModel)]="brandId"
+          aria-label="Default select example"
+        >
+          <option value="0" selected>Marka</option>
+          <option value="{{ brand.brandId }}" *ngFor="let brand of brands">
+            {{ brand.brandName }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-3">
+        <select
+          class="form-select"
+          [(ngModel)]="colorId"
+          aria-label="Default select example"
+        >
+          <option value="0" selected>Renk</option>
+          <option value="{{ color.colorId }}" *ngFor="let color of colors">
+            {{ color.colorName }}
+          </option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <button type="button" (click)="filter()" class="btn btn-success">
+          <i class="bi bi-funnel"></i>Filtrele
+        </button>
+      </div>
+      <div class="col-md-12">
+        <div class="mb-3">
+          <label for="filterText" class="form-label">Araba Ara</label>
+          <input
+            type="text"
+            [(ngModel)]="filterText"
+            class="form-control"
+            id="filterText"
+            placeholder="arama ifadesi giriniz"
+          />
+        </div>
+        <div *ngIf="filterText.length > 2" class="alert alert-primary">
+          {{ filterText }} aradınız
+        </div>
+
+        ARABALAR
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Araba Adı</th>
+              <th>Marka Adı</th>
+              <th>Renk Adı</th>
+              <th>Günlük Fiyat</th>
+              <th>Kdv'li fiyat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let car of cars | filterPipe: filterText">
+              <th>{{ car.carId }}</th>
+              <td>{{ car.carName }}</td>
+              <td>{{ car.brandName }}</td>
+              <td>{{ car.colorName }}</td>
+              <td>
+                {{ car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2" }}
+              </td>
+              <td>
+                {{
+                  car.dailyPrice
+                    | vatadded: 20
+                    | currency: "TRY":"symbol-narrow":"1.2-2"
+                }}
+              </td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  routerLink="/cardetails/car/{{ car.carId }}"
+                >
+                  Detaylar
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

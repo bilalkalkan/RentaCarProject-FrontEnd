@@ -1,0 +1,39 @@
+<div>
+  <div class="mb-3">
+    <label for="brandFilterText" class="form-label">Marka ara</label>
+    <input
+      type="text"
+      [(ngModel)]="brandFilterText"
+      class="form-control"
+      id="brandFilterText"
+      placeholder="arama ifadesi giriniz"
+    />
+  </div>
+
+  <div *ngIf="brandFilterText" class="alert alert-primary">
+    {{ brandFilterText }} aradınız
+  </div>
+
+  <div class="col-md-3">
+    <button type="button" routerLink="/brand-image" class="btn btn-info">
+      <i class="bi bi-funnel"></i>Resim Ekle
+    </button>
+  </div>
+  <ul class="list-group">
+    <li
+      [class]="getCurrentBrandClass(brand)"
+      (click)="setCurrentBrand(brand)"
+      routerLink="/cars/brand/{{ brand.brandId }}"
+      *ngFor="let brand of brands | filterbrandpipe:brandFilterText" 
+    >
+      {{ brand.brandName }}
+      <img
+        src="https://localhost:44330/{{ brand.brandImages }}"
+        class="img"
+        width="60"
+        height="60"
+        alt="car Image"
+      />
+    </li>
+  </ul>
+</div>

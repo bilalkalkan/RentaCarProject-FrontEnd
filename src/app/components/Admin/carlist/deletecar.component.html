@@ -1,0 +1,37 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>Araba Id</th>
+      <th>Marka Id</th>
+      <th>Renk Id</th>
+      <th>Model</th>
+      <th>Günlük Fiyat</th>
+      <th>Açıklama</th>
+      <th scope="col">operasyonlar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let car of cars">
+      <th>{{ car.id }}</th>
+      <td>{{ car.brandId }}</td>
+      <td>{{ car.colorId }}</td>
+      <td>{{ car.modelYear }}</td>
+      <td>{{ car.dailyPrice }}</td>
+      <td>{{ car.description }}</td>
+      <td>
+        <button (click)="deleteCar(car)" class="btn btn-danger" type="button">
+          Sil
+        </button>
+      </td>
+      <td>
+        <button
+          type="button"
+          class="btn btn-success"
+          routerLink="/deleteCar/updatecar"
+        >
+          Güncelle
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+      <tr>
+       
+        <th>Marka Id</th>
+        <th>Marka Adı</th>
+        
+        <th scope="col">operasyonlar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let brand of brands">
+        <th>{{ brand.brandId }}</th>
+        <td>{{ brand.brandName }}</td>
+       
+        <td>
+          <button (click)="deleteBrand(brand)" class="btn btn-danger" type="button">
+            Sil
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/update-brand/{{brand.brandId}}"
+          >
+            Güncelle
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

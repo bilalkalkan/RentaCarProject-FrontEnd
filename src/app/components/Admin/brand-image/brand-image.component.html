@@ -1,0 +1,50 @@
+<div class="d-flex" id="wrapper">
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <br />
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header">
+            <h5 class="card-title">Markaya resim ekle</h5>
+            <div class="card-body">
+              <form [formGroup]="brandImageAddForm">
+                
+                <div class="mb-3">
+                  <div class="form-group">
+                    <label>Marka seçiniz</label>
+                    <select
+                      class="form-control"
+                      formControlName="BrandId"
+                      name="number"
+                    >
+                      <option
+                        *ngFor="let brand of brands"
+                        [value]="brand.brandId"
+                      >
+                        {{ brand.brandId }} : {{ brand.brandName }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="mb-3">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <input type="file" (change)="uploadFile($event)" />
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div class="card-footer">
+              <div class="form-group">
+                <button class="btn btn-danger btn-block btn-lg" (click)="add()">
+                  Resmi ekle
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

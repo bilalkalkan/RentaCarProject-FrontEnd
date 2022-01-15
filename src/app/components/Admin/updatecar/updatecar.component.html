@@ -1,0 +1,85 @@
+<div class="content">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header"><h5 class="title">Araba Güncelle</h5></div>
+      <div class="card-body">
+        <form [formGroup]="carUpdateForm">
+          <div class="mb-3">
+            <label for="brandId">Araba Id</label>
+            <select class="form-control" formControlName="id" name="number">
+              <option *ngFor="let car of cars" [ngValue]="car.id">
+                {{ car.id }} 
+              </option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="brandId">Marka Id</label>
+            <div class="from-group">
+              <input
+                type="number"
+                id="brandId"
+                formControlName="brandId"
+                class="form-control"
+                placeholder="Marka Id"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="colorId">Renk Id</label>
+            <div class="from-group">
+              <input
+                type="number"
+                id="colorId"
+                formControlName="colorId"
+                class="form-control"
+                placeholder="Renk Id"
+              />
+            </div>
+          
+          </div>
+          <div class="mb-3">
+            <label for="modelYear">Model yılı</label>
+            <div class="from-group">
+              <input
+                type="number"
+                id="modelYear"
+                formControlName="modelYear"
+                class="form-control"
+                placeholder="Model yılı"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="dailyPrice">Günlük fiyat </label>
+            <div class="from-group">
+              <input
+                type="number"
+                id="dailyPrice"
+                formControlName="dailyPrice"
+                class="form-control"
+                placeholder="Günlük Fiyat"
+              />
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="description">Açıklama</label>
+            <div class="from-group">
+              <input
+                type="text"
+                id="description"
+                formControlName="description"
+                class="form-control"
+                placeholder="Açıklama"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-fill btn-primary" (click)="update()">
+          Güncelle
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

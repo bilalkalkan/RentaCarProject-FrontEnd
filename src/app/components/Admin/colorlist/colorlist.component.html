@@ -1,0 +1,33 @@
+<table class="table">
+    <thead>
+      <tr>
+       
+        <th>Renk Id</th>
+        <th>Renk Adı</th>
+        
+        <th scope="col">operasyonlar</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let color of colors">
+        <th>{{ color.colorId }}</th>
+        <td>{{ color.colorName }}</td>
+       
+        <td>
+          <button (click)="deleteColor(color)" class="btn btn-danger" type="button">
+            Sil
+          </button>
+        </td>
+        <td>
+          <button
+            type="button"
+            class="btn btn-success"
+            routerLink="/updatecolor"
+          >
+            Güncelle
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  

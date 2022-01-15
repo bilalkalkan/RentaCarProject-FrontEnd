@@ -1,0 +1,48 @@
+
+<div class="card" style="width: 18rem;" *ngFor="let car of cars">
+  <img src="https://localhost:44330/{{ car.carImages }}" class="card-img-top" alt="...">
+  
+  <ul class="list-group list-group-flush" *ngFor="let car of cars">
+    <li class="list-group-item">{{ car.carName }}</li>
+    <li class="list-group-item">{{ car.brandName }}</li>
+    <li class="list-group-item">{{ car.colorName }}</li>
+    <li class="list-group-item"> {{ car.dailyPrice | vatadded:20 | currency: "TRY":"symbol-narrow":"1.2-2" }}</li>
+  </ul>
+  <div class="card-body">
+    <button>Hemen kirala</button>
+  </div>
+</div>
+
+
+
+
+<!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
+    <ul style="font: size 13px;" class="list-group" *ngFor="let car of cars">
+      <li class="list-group-item">{{ car.carName }}</li>
+      <li class="list-group-item">{{ car.brandName }}</li>
+      <li class="list-group-item">{{ car.colorName }}</li>
+      <li class="list-group-item">
+        {{ car.dailyPrice | vatadded:20 | currency: "TRY":"symbol-narrow":"1.2-2" }}
+      </li>
+      <li class="list-group-item">
+        <div>
+          <img 
+          src="https://localhost:44330/{{ car.carImages }}"
+          class="lazy img-fluid"
+          width="260"
+          height="160"
+          alt="car Image"
+         
+        />
+        </div>
+         
+        
+      </li>
+    </ul>
+
+        
+          
+      
+     
+  </div> -->
+  

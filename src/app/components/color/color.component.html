@@ -1,0 +1,27 @@
+<div>
+    <div class="mb-3">
+      <label for="colorFilterText" class="form-label">Renk ara</label>
+      <input
+        type="text"
+        [(ngModel)]="colorFilterText"
+        class="form-control"
+        id="brandFilterText"
+        placeholder="arama ifadesi giriniz"
+      />
+    </div>
+  
+    <div *ngIf="colorFilterText" class="alert alert-primary">
+      {{ colorFilterText }} aradınız
+    </div>
+    <ul class="list-group">
+      <li
+        (click)="setCurrentColor(color)"
+        routerLink="/cars/color/{{ color.colorId }}"
+        *ngFor="let color of colors | filtercolorpipe: colorFilterText"
+        [class]="getCurrentColorClass(color)"
+      >
+        {{ color.colorId }} {{ color.colorName }}
+      </li>
+    </ul>
+  </div>
+  
