@@ -1,97 +1,104 @@
 <div class="container">
-  <div class="column">
+  <div class="col-md-12">
     <div class="col-md-3">
-      <app-brand></app-brand>
-      <div>
-        Tüm Arabalar
-        <button class="btn btn-primary" routerLink="/cars">göster</button>
+      <select
+        class="form-select"
+        [(ngModel)]="brandId"
+        aria-label="Default select example"
+      >
+        <option value="0" selected>Marka</option>
+        <option value="{{ brand.brandId }}" *ngFor="let brand of brands">
+          {{ brand.brandName }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3">
+      <select
+        class="form-select"
+        [(ngModel)]="colorId"
+        aria-label="Default select example"
+      >
+        <option value="0" selected>Renk</option>
+        <option value="{{ color.colorId }}" *ngFor="let color of colors">
+          {{ color.colorName }}
+        </option>
+      </select>
+    </div>
+    <div class="col-md-3 mb-3">
+      <button type="button" (click)="filter()" class="btn btn-success">
+        <i class="bi bi-funnel"></i>Filtrele
+      </button>
+    </div>
+    <div class="mb-3">
+      <label for="filterText" class="form-label">Araba Ara</label>
+      <input
+        type="text"
+        [(ngModel)]="filterText"
+        class="form-control"
+        id="filterText"
+        placeholder="arama ifadesi giriniz"
+      />
+    </div>
+    <div *ngIf="filterText.length > 2" class="alert alert-primary">
+      {{ filterText }} aradınız
+    </div>
+    <div class="row">
+      <div class="col-md-2 align-items-start">
+        <app-brand></app-brand>
       </div>
-      <div class="col-md-3">
-        <select
-          class="form-select"
-          [(ngModel)]="brandId"
-          aria-label="Default select example"
-        >
-          <option value="0" selected>Marka</option>
-          <option value="{{ brand.brandId }}" *ngFor="let brand of brands">
-            {{ brand.brandName }}
-          </option>
-        </select>
-      </div>
-      <div class="col-md-3">
-        <select
-          class="form-select"
-          [(ngModel)]="colorId"
-          aria-label="Default select example"
-        >
-          <option value="0" selected>Renk</option>
-          <option value="{{ color.colorId }}" *ngFor="let color of colors">
-            {{ color.colorName }}
-          </option>
-        </select>
-      </div>
-      <div class="col-md-3 mb-3">
-        <button type="button" (click)="filter()" class="btn btn-success">
-          <i class="bi bi-funnel"></i>Filtrele
-        </button>
-      </div>
-      <div class="col-md-12">
-        <div class="mb-3">
-          <label for="filterText" class="form-label">Araba Ara</label>
-          <input
-            type="text"
-            [(ngModel)]="filterText"
-            class="form-control"
-            id="filterText"
-            placeholder="arama ifadesi giriniz"
-          />
-        </div>
-        <div *ngIf="filterText.length > 2" class="alert alert-primary">
-          {{ filterText }} aradınız
-        </div>
 
-        ARABALAR
+      <div class="col align-items-center">
+        <div class="row align-items-center">
+          <div>
+            Tüm Arabalar
+            <button class="btn btn-primary" routerLink="/cars">göster</button>
+          </div>
 
-        <table class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Araba Adı</th>
-              <th>Marka Adı</th>
-              <th>Renk Adı</th>
-              <th>Günlük Fiyat</th>
-              <th>Kdv'li fiyat</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let car of cars | filterPipe: filterText">
-              <th>{{ car.carId }}</th>
-              <td>{{ car.carName }}</td>
-              <td>{{ car.brandName }}</td>
-              <td>{{ car.colorName }}</td>
-              <td>
-                {{ car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2" }}
-              </td>
-              <td>
-                {{
-                  car.dailyPrice
-                    | vatadded: 20
-                    | currency: "TRY":"symbol-narrow":"1.2-2"
-                }}
-              </td>
-              <td>
-                <button
-                  type="button"
-                  class="btn btn-danger"
-                  routerLink="/cardetails/car/{{ car.carId }}"
-                >
-                  Detaylar
-                </button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+          <div
+            class="card"
+            style="width: 13rem"
+            *ngFor="let car of cars | filterPipe: filterText"
+          >
+            <img
+              src="https://localhost:44330/{{ car.carImages }}"
+              class="card-img-top"
+              alt="car Image"
+              width="200"
+              height="100"
+            />
+            <div class="card-body">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <strong>Araba Adı</strong> {{ car.carName }}
+                </li>
+                <li class="list-group-item"><strong>Marka:</strong> {{ car.brandName }}</li>
+                <li class="list-group-item"><strong>Renk:</strong> {{ car.colorName }}</li>
+                <li class="list-group-item"> <strong>Günlük Fiyat:</strong>
+                  {{ car.dailyPrice | currency: "TRY":"symbol-narrow":"1.2-2" }}
+                </li>
+                <li class="list-group-item"><strong>KDV'li Fiyat:</strong>
+                  {{
+                    car.dailyPrice
+                      | vatadded: 20
+                      | currency: "TRY":"symbol-narrow":"1.2-2"
+                  }}
+                </li>
+              </ul>
+            </div>
+            <div class="card-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                routerLink="/cars/carDetail/{{ car.carId }}"
+              >
+                <i class="bi bi-eyeglasses"></i>
+                Detaylar
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+      <div class="col-md-2 align-items-end"><app-color></app-color></div>
     </div>
   </div>
 </div>

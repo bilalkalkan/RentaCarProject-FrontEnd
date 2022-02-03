@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Car } from 'src/app/models/car';
 import { CarService } from 'src/app/services/car.service';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -9,6 +8,8 @@ import { BrandService } from 'src/app/services/brand.service';
 import { Brand } from 'src/app/models/brand';
 import { ColorService } from 'src/app/services/color.service';
 import { Color } from 'src/app/models/color';
+import { Car } from 'src/app/models/car';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-car',
@@ -17,8 +18,8 @@ import { Color } from 'src/app/models/color';
 })
 export class CarComponent implements OnInit {
   cars: Car[] = [];
-  brands: Brand[] ;
-  colors: Color[];;
+  brands: Brand[];
+  colors: Color[];
   currentCar: Car;
   selectedCar: Car;
   filterText = '';
@@ -31,7 +32,9 @@ export class CarComponent implements OnInit {
     private toatsrService: ToastrService,
     private formBuilder: FormBuilder,
     private brandService: BrandService,
-    private colorService: ColorService
+    private colorService: ColorService,
+    private modalService:NgbModal,
+
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +50,7 @@ export class CarComponent implements OnInit {
     this.getCarDetails();
     this.getBrands();
     this.getColors();
-    this.filter();
+   
   }
   setCurrentCar(car: Car) {
     this.currentCar = car;
@@ -69,11 +72,11 @@ export class CarComponent implements OnInit {
       }
     );
   }
-  getCarDetailsById(id: number) {
-    this.carService.getCarDetailById(id).subscribe((response) => {
-      this.cars = response.data;
-    });
-  }
+  // getCarDetailsById(id: number) {
+  //   this.carService.getCarDetailById(id).subscribe((response) => {
+  //     this.cars = response.data;
+  //   });
+  //}
   getCarsByBrand(brandId: number) {
     this.carService.getCarByBrandId(brandId).subscribe(
       (response) => {
@@ -140,4 +143,6 @@ export class CarComponent implements OnInit {
       }
     );
   }
+
+
 }

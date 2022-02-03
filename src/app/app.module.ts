@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { NgxBootstrapIconsModule,allIcons  } from 'ngx-bootstrap-icons';
 import { ToastrModule } from 'ngx-toastr';
 import { CarComponent } from './components/car/car.component';
 import { BrandComponent } from './components/brand/brand.component';
@@ -35,6 +33,15 @@ import { AddColorComponent } from './components/Admin/add-color/add-color.compon
 import { UpdatecolorComponent } from './components/Admin/updatecolor/updatecolor.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+import { CreditCardComponent } from './components/credit-card/credit-card.component';
+import { AddrentalComponent } from './components/addrental/addrental.component';
+import { NgModule } from '@angular/core';
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +70,12 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AddColorComponent,
     UpdatecolorComponent,
     LoginComponent,
+   
+    CreditCardComponent,
+    AddrentalComponent,
+    RegisterComponent,
+    UserComponent,
+    UpdateUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,6 +88,10 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
       positionClass: 'toast-bottom-right',
     }),
     BrowserAnimationsModule,
+    NgbModule,
+    NgxBootstrapIconsModule.pick(allIcons)
+    
+    
   ],
   providers: [
     {

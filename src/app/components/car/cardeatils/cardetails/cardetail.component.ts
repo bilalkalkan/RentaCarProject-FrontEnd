@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Car } from 'src/app/models/car';
+import { CarDetail } from 'src/app/models/carDetail';
 import { CarService } from 'src/app/services/car.service';
 
 @Component({
@@ -9,7 +10,8 @@ import { CarService } from 'src/app/services/car.service';
   styleUrls: ['./cardetail.component.css'],
 })
 export class CardetailComponent implements OnInit {
-  cars: Car[] = [];
+ carDetail:CarDetail
+  
   constructor(
     private carService: CarService,
     private activatedRoute: ActivatedRoute
@@ -17,14 +19,16 @@ export class CardetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.params.subscribe((params) => {
-      if (params['id']) {
-        this.getCarsDetails(params['id']);
+      if (params['carId']) {
+        this.getCarsDetails(params['carId']);
       }
     });
   }
+
+ 
   getCarsDetails(id: number) {
     this.carService.getCarDetailById(id).subscribe((response) => {
-      this.cars = response.data;
+      this.carDetail = response.data;
     });
   }
 }

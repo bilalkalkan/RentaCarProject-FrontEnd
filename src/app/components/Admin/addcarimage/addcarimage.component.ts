@@ -20,6 +20,8 @@ export class AddcarimageComponent implements OnInit {
     private carService: CarService) { }
 
   ngOnInit(): void {
+    this.getcarlist();
+    this.createImageAddForm();
   }
   createImageAddForm() {
     this.imageAddForm = this.formBuilder.group({

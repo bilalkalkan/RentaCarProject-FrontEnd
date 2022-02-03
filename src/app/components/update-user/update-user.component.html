@@ -1,0 +1,48 @@
+<div class="card">
+    <div class="card-header">
+      <div class=" text-center">
+        <h4>Profil Güncelle</h4>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="d-flex flex-column align-items-center text-center">
+        <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
+        
+      </div>
+    </div>
+  </div>
+  <div class="card">
+  
+    <div class="card-body">
+      <form [formGroup]="userUpdateForm">
+        <div class="align-items center">
+          <div class="form-group row">
+            <input type="hidden" id="id" formControlName="id" class="form-control">
+  
+            <label for="firstName" class="col-sm-3 mt-2 col-form-label">First Name</label>
+            <div class="col-sm-9">
+              <input type="text" id="firstName" formControlName="firstName" class="form-control">
+            </div>
+  
+            <label for="lastName" class="col-sm-3 mt-2 col-form-label">Last Name</label>
+            <div class="col-sm-9">
+              <input type="text" id="lastName" formControlName="lastName" class="form-control">
+            </div>
+  
+            <label for="email" class="col-sm-3 col-form-label">Email</label>
+            <div class="col-sm-9">
+              <input type="text" id="email" formControlName="email" class="form-control mb-2" />
+            </div>
+            
+          </div>
+        </div>
+      </form>
+      <div class="row">
+        <div class="d-flex mt-3">
+          <button (click)="update()" type="button" class="btn btn-success me-2">Güncelle</button>
+          <button (click)="closeModal()" type="button" class="btn btn-danger">İptal</button>
+        </div>
+      </div>
+    </div>
+  
+  </div>

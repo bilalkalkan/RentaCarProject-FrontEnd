@@ -1,13 +1,14 @@
 export class Car {
-  id: number;
-  carId: number;
-  carName: number;
+  id: number; 
   brandId: number;
-  brandName: number;
   colorId: number;
-  colorName: number;
   modelYear: number;
   dailyPrice: number;
   description: string;
-  carImages: string[];
+  FindexScore:number;
+  carId:number
+  carName: string;
+  brandName:string
+  colorName:string
+  carImages:string[]
 }

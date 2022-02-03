@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth.service';
+import { LocalStorageService } from 'src/app/services/local-storage.service';
 
 @Component({
   selector: 'app-login',
@@ -20,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private localStorage: LocalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -38,7 +40,8 @@ export class LoginComponent implements OnInit {
       this.authService.login(loginModel).subscribe(
         (response) => {
           this.toastrService.info(response.message);
-          localStorage.setItem('token', response.data.token);
+          this.localStorage.setLocalStorage('token', response.data.token);
+         
         },
         (responseError) => {
           console.log(responseError);

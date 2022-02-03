@@ -1,20 +1,32 @@
-
-<div class="card" style="width: 18rem;" *ngFor="let car of cars">
-  <img src="https://localhost:44330/{{ car.carImages }}" class="card-img-top" alt="...">
+<div class="card" style="width: 18rem;" *ngIf="carDetail != undefined" >
+  <img src="https://localhost:44330/{{ carDetail.carImages }}" class="card-img-top" alt="...">
   
-  <ul class="list-group list-group-flush" *ngFor="let car of cars">
-    <li class="list-group-item">{{ car.carName }}</li>
-    <li class="list-group-item">{{ car.brandName }}</li>
-    <li class="list-group-item">{{ car.colorName }}</li>
-    <li class="list-group-item"> {{ car.dailyPrice | vatadded:20 | currency: "TRY":"symbol-narrow":"1.2-2" }}</li>
+  <ul class="list-group list-group-flush"  *ngIf="carDetail != undefined">
+    <li class="list-group-item">{{ carDetail.carId }}</li>
+    <li class="list-group-item">{{ carDetail.carName }}</li>
+    <li class="list-group-item">{{ carDetail.brandName }}</li>
+    <li class="list-group-item">{{ carDetail.colorName }}</li>
+    <li class="list-group-item"> {{ carDetail.dailyPrice | vatadded:20 | currency: "TRY":"symbol-narrow":"1.2-2" }}</li>
   </ul>
-  <div class="card-body">
-    <button>Hemen kirala</button>
+  <div class="card-footer">
+    <button type="button" class="btn btn-warning" routerLink="/rental/add/{{carDetail.carId}}">Hemen kirala</button>
   </div>
 </div>
 
 
-
+<!-- <div class="card" style="width: 18rem;" *ngFor="let carDetail of carDetail">
+  <img src="https://localhost:44330/{{ carDetail .carImages }}" class="card-img-top" alt="...">
+  
+  <ul class="list-group list-group-flush" *ngIf="carDetail != undefined">
+    <li class="list-group-item">{{ carDetail.carName }}</li>
+    <li class="list-group-item">{{ carDetail.brandName }}</li>
+    <li class="list-group-item">{{ carDetail.colorName }}</li>
+    <li class="list-group-item"> {{ carDetail.dailyPrice | vatadded:20 | currency: "TRY":"symbol-narrow":"1.2-2" }}</li>
+  </ul>
+  <div class="card-body">
+    <button>Hemen kirala</button>
+  </div>
+</div> -->
 
 <!-- <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
     <ul style="font: size 13px;" class="list-group" *ngFor="let car of cars">
@@ -45,4 +57,3 @@
       
      
   </div> -->
-  

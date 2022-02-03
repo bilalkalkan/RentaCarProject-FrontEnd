@@ -18,9 +18,16 @@ import { UpdatecolorComponent } from './components/Admin/updatecolor/updatecolor
 import { CustomerComponent } from './components/Admin/customer/customer.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginGuard } from './guards/login.guard';
+import { RentalComponent } from './components/rental/rental.component';
+import { AddrentalComponent } from './components/addrental/addrental.component';
+import { RegisterComponent } from './components/register/register.component';
+import { UserComponent } from './components/user/user.component';
+import { UpdateUserComponent } from './components/update-user/update-user.component';
 const routes: Routes = [
   {path:'',component:HomeComponent},
+  {path:'user',component:UserComponent},
   {path:'Home',component:HomeComponent},
+  {path:"rental/add/:carId",component:AddrentalComponent,canActivate:[LoginGuard]},
   {path:'customerlist',component:CustomerComponent},
   {path:'updatecolor',component:UpdatecolorComponent},
   {path:'colorlist',component:ColorlistComponent},
@@ -34,11 +41,13 @@ const routes: Routes = [
   {path:'deletecar',component:DeletecarComponent},
   {path:'updatecar',component:UpdatecarComponent},
   {path:'cars/addcarimage',component:AddcarimageComponent},
-   {path:'cardetails/car/:id',component:CardetailComponent},
+   {path:'cars/carDetail/:carId',component:CardetailComponent},
    {path:'deleteCarImages',component:DeltecarimageComponent},
    {path:'add-brand',component:AddBrandComponent},
    {path:'add-color',component:AddColorComponent},
-   {path:'login',component:LoginComponent}
+   {path:'login',component:LoginComponent},
+   {path:'register',component:RegisterComponent},
+   {path:'updateUser',component:UpdateUserComponent}
   
 ];
 

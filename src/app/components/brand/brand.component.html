@@ -14,11 +14,11 @@
     {{ brandFilterText }} aradınız
   </div>
 
-  <div class="col-md-3">
+  <!-- <div class="col-md-3">
     <button type="button" routerLink="/brand-image" class="btn btn-info">
       <i class="bi bi-funnel"></i>Resim Ekle
     </button>
-  </div>
+  </div> -->
   <ul class="list-group">
     <li
       [class]="getCurrentBrandClass(brand)"
@@ -27,13 +27,13 @@
       *ngFor="let brand of brands | filterbrandpipe:brandFilterText" 
     >
       {{ brand.brandName }}
-      <img
+      <!-- <img
         src="https://localhost:44330/{{ brand.brandImages }}"
         class="img"
         width="60"
         height="60"
         alt="car Image"
-      />
+      /> -->
     </li>
   </ul>
 </div>
